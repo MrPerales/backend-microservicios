@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const response = require("./../../../network/response");
+const response = require("../../../network/response");
 router.get("/", async (req, resp, next) => {
   try {
     response.success(req, resp, "Todo Correcto", 200);
