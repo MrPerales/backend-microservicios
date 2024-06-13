@@ -1,8 +1,18 @@
-const store = require("../../../store/dummy");
 const USER_TABLE = "user";
 
-function list() {
-  return store.list(USER_TABLE);
-}
+module.exports = function (injectedStore) {
+  let store = injectedStore;
+  // si no nos mandan ninguna store le asignamos una por defecto
+  if (!store) {
+    store = require("../../../store/dummy");
+  }
 
-module.exports = { list };
+  function list() {
+    return store.list(USER_TABLE);
+  }
+  function getUser(id) {
+    return store.get(USER_TABLE, id);
+  }
+
+  return { list, getUser };
+};

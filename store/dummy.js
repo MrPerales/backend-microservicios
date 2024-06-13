@@ -1,23 +1,24 @@
 // DataBase Dummy
 
 const db = {
-  user: [{ id: 1, name: "Carlos" }],
+  user: [{ id: "1", name: "Carlos" }],
 };
 
-function list(table) {
+async function list(table) {
   return db[table];
 }
-function get(table, id) {
-  let data = list(table);
+async function get(table, id) {
+  let data = await list(table);
   //   en este caso solo regresa el primer elemento
-  return data.find((item) => item.id === id)[0] || null;
+  const user = data.find((item) => item.id === id) || null;
+  return user;
 }
 // update
-function upsert(table, changes) {
+async function upsert(table, changes) {
   db[table].push(changes);
 }
 
-function remove(table, id) {}
+async function remove(table, id) {}
 
 module.exports = {
   list,
