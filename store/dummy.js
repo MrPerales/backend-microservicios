@@ -16,9 +16,16 @@ async function get(table, id) {
 // update
 async function upsert(table, changes) {
   db[table].push(changes);
+  return { message: "user upsert" };
 }
 
-async function remove(table, id) {}
+async function remove(table, id) {
+  const userIndex = db[table].findIndex((user) => user.id === id);
+  if (userIndex >= 0) {
+    db[table].slice(userIndex, 1);
+  }
+  return { message: "user deleted " };
+}
 
 module.exports = {
   list,
