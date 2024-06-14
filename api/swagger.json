@@ -1,0 +1,223 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "RedSocialNode",
+    "description": "Una red Social en NodeJS",
+    "version": "1.0.11"
+  },
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "user",
+      "description": "Operaciones sobre el usuario"
+    },
+    {
+      "name": "user/id",
+      "description": "Obtener un usuario"
+    }
+  ],
+  "paths": {
+    "/user": {
+      "get": {
+        "tags": ["user"],
+        "summary": "lista los usuarios",
+        "operationId": "listUser",
+        "responses": {
+          "default": {
+            "description": "lista de Usuarios",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["user"],
+        "summary": "Crea un usuario",
+        "description": "Crea un usuario en la app.",
+        "operationId": "createUser",
+        "requestBody": {
+          "description": "Usuario Creado",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["user"],
+        "summary": "borrar un usuario ",
+        "operationId": "deleteUser",
+        "requestBody": {
+          "description": "eliminar usuario",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserDelete"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserId"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/id": {
+      "get": {
+        "tags": ["user/id"],
+        "summary": "Un usuario",
+        "operationId": "getUser",
+        "requestBody": {
+          "description": "Un usuario",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserId"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "Un Usuario",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "int64",
+            "example": 10
+          },
+          "username": {
+            "type": "string",
+            "example": "theUser"
+          },
+          "password": {
+            "type": "string",
+            "example": "12345"
+          }
+        }
+      },
+      "UserId": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "int64",
+            "example": "10"
+          }
+        }
+      },
+      "getUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "int64",
+            "example": "10"
+          },
+          "username": {
+            "type": "string",
+            "example": "theUser"
+          }
+        }
+      },
+      "ApiResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "requestBodies": {
+      "UserArray": {
+        "description": "List of user object",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "petstore_auth": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://petstore3.swagger.io/oauth/authorize",
+            "scopes": {
+              "write:pets": "modify pets in your account",
+              "read:pets": "read your pets"
+            }
+          }
+        }
+      },
+      "api_key": {
+        "type": "apiKey",
+        "name": "api_key",
+        "in": "header"
+      }
+    }
+  }
+}
