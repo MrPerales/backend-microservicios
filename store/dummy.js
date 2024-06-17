@@ -15,7 +15,12 @@ async function get(table, id) {
 }
 // update
 async function upsert(table, changes) {
+  // creamos una tabla si no existe en la db
+  if (!db[table]) {
+    db[table] = [];
+  }
   db[table].push(changes);
+  console.log(db);
   return { message: "user upsert" };
 }
 
