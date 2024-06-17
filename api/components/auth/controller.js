@@ -1,5 +1,5 @@
 const AUTH_TABLE = "auth";
-
+const authSign = require("../../../auth");
 module.exports = function (injectedStore) {
   let store = injectedStore || require("../../../store/dummy");
   function upsert(data) {
@@ -18,7 +18,7 @@ module.exports = function (injectedStore) {
     const data = await store.query(AUTH_TABLE, { username: username });
     if (data.password === password) {
       // genera token
-      return "token";
+      return authSign.sign(data);
     } else {
       throw new Error("informacion invalida ");
     }
