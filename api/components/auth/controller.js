@@ -14,5 +14,14 @@ module.exports = function (injectedStore) {
     }
     return store.upsert(AUTH_TABLE, authData);
   }
-  return { upsert };
+  async function login(username, password) {
+    const data = await store.query(AUTH_TABLE, { username: username });
+    if (data.password === password) {
+      // genera token
+      return "token";
+    } else {
+      throw new Error("informacion invalida ");
+    }
+  }
+  return { upsert, login };
 };

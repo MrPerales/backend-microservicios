@@ -5,7 +5,7 @@ const db = {
 };
 
 async function list(table) {
-  return db[table];
+  return db[table] || [];
 }
 async function get(table, id) {
   let data = await list(table);
@@ -32,9 +32,18 @@ async function remove(table, id) {
   return { message: "user deleted " };
 }
 
+async function query(tabla, q) {
+  let data = await list(tabla);
+  // devuelve un arreglo de propiedades
+  let keys = Object.keys(q);
+  let key = keys[0];
+  const user = data.find((item) => item[key] === q[key]) || null;
+  return user;
+}
 module.exports = {
   list,
   get,
   upsert,
   remove,
+  query,
 };
