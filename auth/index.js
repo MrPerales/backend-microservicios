@@ -7,6 +7,10 @@ function sign(data) {
 function check(req, id) {
   const decoded = decodeHeader(req);
   console.log(decoded);
+  if (decoded.id !== id) {
+    throw new Error("No tienes permisos");
+  }
+  // comporbar si es usuario
 }
 
 function getToken(header) {

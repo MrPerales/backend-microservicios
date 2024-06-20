@@ -7,6 +7,7 @@ module.exports = function checkAuth(action) {
         // userID
         const { id } = req.body;
         auth.check(req, id);
+        next();
         break;
 
       default:

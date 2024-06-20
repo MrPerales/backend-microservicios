@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const secureMiddleware = require("./secure");
 const response = require("../../../network/response");
 const Controller = require("./index");
 router.get("/", async (req, resp, next) => {
@@ -42,7 +42,7 @@ router.delete("/:id", async (req, resp, next) => {
     response.error(req, resp, error.message, 500);
   }
 });
-router.put("/", async (req, resp, next) => {
+router.put("/", secureMiddleware("update"), async (req, resp, next) => {
   try {
     const body = req.body;
     const rta = await Controller.upsert(body);
