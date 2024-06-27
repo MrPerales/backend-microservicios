@@ -1,4 +1,3 @@
-const nanoid = require("nanoid");
 const USER_TABLE = "user";
 const auth = require("./../auth");
 module.exports = function (injectedStore) {
@@ -21,8 +20,6 @@ module.exports = function (injectedStore) {
     };
     if (data.id) {
       user.id = data.id;
-    } else {
-      user.id = nanoid();
     }
     // para que cada vez que nos cambien el password o username se upsert
     if (data.password || data.username) {
