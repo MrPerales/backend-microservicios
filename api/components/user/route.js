@@ -6,6 +6,7 @@ const Controller = require("./index");
 router.get("/", async (req, resp, next) => {
   try {
     const list = await Controller.list();
+    console.log(list, "lista");
     response.success(req, resp, list, 200);
   } catch (error) {
     next(error);
