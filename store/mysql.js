@@ -2,13 +2,6 @@ const mysql = require("mysql2");
 
 const { config } = require("../config/config");
 
-// const dbConfig = {
-//   host: config.mysqlHost,
-//   user: config.mysqlUser,
-//   password: config.mysqlPassword,
-//   database: config.mysqlDatabase,
-//   // port: config.port,
-// };
 const dbConfig = {
   port: config.mysqlPort,
   host: config.mysqlHost,
@@ -41,24 +34,14 @@ function handleCon() {
 }
 handleCon();
 
-// function list(table) {
-//   return new Promise((resolve, reject) => {
-//     connection.query(`SELECT * FROM ${table}`, (err, data) => {
-//       console.log(data);
-//       if (err) return reject(err);
-//       resolve(data);
-//     });
-//   });
-// }
-
-async function list(table) {
-  try {
-    const data = await connection.query(`SELECT * FROM ${table}`);
-    console.log(data);
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
+function list(table) {
+  return new Promise((resolve, reject) => {
+    connection.query(`SELECT * FROM ${table}`, (err, data) => {
+      console.log(data);
+      if (err) return reject(err);
+      resolve(data);
+    });
+  });
 }
 
 module.exports = {
