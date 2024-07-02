@@ -3,6 +3,7 @@ const router = express.Router();
 const secureMiddleware = require("./secure");
 const response = require("../../../network/response");
 const Controller = require("./index");
+
 router.get("/", async (req, resp, next) => {
   try {
     const list = await Controller.list();
@@ -52,5 +53,24 @@ router.put("/", secureMiddleware("update"), async (req, resp, next) => {
     response.error(req, resp, error.message, 500);
   }
 });
+
+// route follow
+
+router.post(
+  "/follow/:id",
+  secureMiddleware("follow"),
+  async (req, resp, next) => {
+    try {
+      // usuario de uno
+      const userId = req.user.id;
+      // usuario al que intentas
+      const followId = req.params.id;
+      const rta = await Controller.follow(userId, followId);
+      response.success(req, resp, rta, 200);
+    } catch (error) {
+      response.error(req, resp, error.message, 500);
+    }
+  }
+);
 
 module.exports = router;

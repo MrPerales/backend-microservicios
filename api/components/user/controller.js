@@ -38,6 +38,12 @@ module.exports = function (injectedStore) {
   function remove(id) {
     return store.remove(USER_TABLE, id);
   }
+  function follow(from, to) {
+    return store.upsert(`${USER_TABLE}_follow`, {
+      user_from: from,
+      user_to: to,
+    });
+  }
 
-  return { list, getUser, remove, upsert };
+  return { list, getUser, remove, upsert, follow };
 };

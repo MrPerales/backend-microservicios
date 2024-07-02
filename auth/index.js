@@ -13,7 +13,11 @@ function check(req, id) {
   }
   // comporbar si es usuario
 }
-
+// validamos si es un token valido
+function logged(req) {
+  const decoded = decodeHeader(req);
+  return decoded;
+}
 function getToken(header) {
   // bearer dfkdkfkdmf
   if (!header) {
@@ -50,4 +54,5 @@ function decodeHeader(req) {
 module.exports = {
   sign,
   check,
+  logged,
 };
