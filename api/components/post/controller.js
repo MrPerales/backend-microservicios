@@ -9,5 +9,10 @@ module.exports = function (injectedStore) {
     // console.log(data);
     return store.insert(POST_TABLE, data);
   }
-  return { list, add };
+  async function deletedPost(id) {
+    const query = { id };
+    return store.deleted(POST_TABLE, query);
+  }
+
+  return { list, add, deletedPost };
 };

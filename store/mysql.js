@@ -102,10 +102,20 @@ function query(table, query) {
     });
   });
 }
+//
+function deleted(table, query) {
+  return new Promise((resolve, reject) => {
+    connection.query(`DELETE FROM ${table} WHERE ?`, query, (err, resp) => {
+      if (err) return reject(err);
+      resolve({ message: `deleted ${query.id}` });
+    });
+  });
+}
 module.exports = {
   list,
   get,
   upsert,
   query,
   insert,
+  deleted,
 };
