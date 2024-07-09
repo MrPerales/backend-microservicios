@@ -107,4 +107,5 @@ module.exports = {
   get,
   upsert,
   query,
+  insert,
 };

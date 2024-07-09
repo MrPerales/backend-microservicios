@@ -5,5 +5,9 @@ module.exports = function (injectedStore) {
   function list() {
     return store.list(POST_TABLE);
   }
-  return { list };
+  function add(data) {
+    // console.log(data);
+    return store.insert(POST_TABLE, data);
+  }
+  return { list, add };
 };
