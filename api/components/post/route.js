@@ -32,5 +32,16 @@ router.post("/deleted/:id", async (req, resp, next) => {
     response.error(req, resp, error.message, 500);
   }
 });
+router.post("/edit", async (req, resp, next) => {
+  try {
+    // const { id } = req.params;
+    const data = req.body;
+    // data.id = id;
+    const rta = await Controller.edit(data);
+    response.success(req, resp, rta, 200);
+  } catch (error) {
+    response.error(req, resp, error.message, 500);
+  }
+});
 
 module.exports = router;
