@@ -12,6 +12,7 @@ const config = {
   pgAdminPassword: process.env.PG_PASSWORD,
   pgAdminPort: process.env.PG_PORT,
   pgAdminRefPort: process.env.PG_REFPORT,
+  mysqlServicePort: process.env.MYSQL_SERVICE_PORT,
 };
 
 module.exports = { config };
