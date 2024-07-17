@@ -4,7 +4,6 @@ const { config } = require("../config/config");
 const app = express();
 const userRouter = require("./components/user/route");
 const authRouter = require("./components/auth/route");
-const postRouter = require("./components/post/route");
 const swaggerDoc = require("./swagger.json");
 const errors = require("../network/errors");
 
@@ -12,7 +11,6 @@ app.use(express.json());
 // routes
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
-app.use("/api/post", postRouter);
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 
 //middelware de errors

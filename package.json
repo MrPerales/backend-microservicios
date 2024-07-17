@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node --watch ./api/index.js",
     "devMysql": "node --watch ./mysql/index.js",
+    "devPost": "node --watch ./post/index.js",
     "start": "node index.js"
   },
   "keywords": [],
